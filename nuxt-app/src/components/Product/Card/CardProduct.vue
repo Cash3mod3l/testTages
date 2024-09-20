@@ -51,7 +51,7 @@ onMounted(() => {
 
 .block-card {
   width: 336px;
-  height: 352px;
+  height: auto;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
@@ -66,21 +66,7 @@ onMounted(() => {
 
 .product-image {
   width: 100%;
-  height: auto;
-}
-
-.price-section {
-  margin-top: 10px;
-}
-
-.current-price {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.old-price {
-  text-decoration: line-through;
-  color: #999;
-  margin-left: 10px;
+  max-height: 260px;
+  height: 125%;
 }
 </style>
