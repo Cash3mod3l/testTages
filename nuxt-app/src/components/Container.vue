@@ -1,47 +1,35 @@
 <script setup lang="ts">
-import Header from "~/src/components/elements/Header/Header.vue";
-import Select from "~/src/components/elements/Select/Select.vue";
-import {request} from '~/src/request/request';
-import CardProduct from "~/src/components/Product/Card/CardProduct.vue";
+import Header from '~/src/components/elements/Header/Header.vue';
+import Select from '~/src/components/elements/Select/Select.vue';
+import CardProduct from '~/src/components/Product/Card/CardProduct.vue';
+import { useProductCardStore } from '~/src/store/ProductCardStore';
+import { ref, onMounted, computed } from 'vue';
 
-const selectedValue = ref('');
-const selectedValueMaterial = ref('')
+const productStore = useProductCardStore();
+
+const selectedValue = ref('asc');
+const selectedValueMaterial = ref('');
 
 const options = ref([
-  {value: 1, text: 'Цена по возрастанию'},
-  {value: 2, text: 'Цена по убыванию'},
+  { value: 'asc', text: 'Цена по возрастанию' },
+  { value: 'desc', text: 'Цена по убыванию' },
 ]);
-
-const onOptionChangeTest = (newValue: string | number) => {
-  console.log('Selected value changed:', newValue);
-};
 
 const materialOptions = ref([]);
 
-const onOptionChange = (newValue: string | number) => {
-  console.log('Selected value changed:', newValue);
+const onSortChange = (newValue: 'asc' | 'desc') => {
+  productStore.setSortOrder(newValue);
 };
 
-function getMaterial() {
-  const config = {
-    method: 'GET',
-    url: `/data/materials.json`,
-  };
-
-  request(config).then((data) => {
-    materialOptions.value = data.map((item: { id: string; name: string }) => ({
-      value: item.id,
-      text: item.name,
-    }));
-  }).catch((error) => {
-    console.error('Ошибка при получении материалов:', error);
-  });
-}
+const onOptionChange = (newValue: string | number) => {
+  console.log('Выбран материал:', newValue);
+};
 
 onMounted(() => {
-  getMaterial();
+  productStore.getProducts();
 });
 
+const sortedProducts = computed(() => productStore.sortedProducts);
 </script>
 
 <template>
@@ -54,22 +42,24 @@ onMounted(() => {
 
     <section>
       <div class="inline-flex-spacing-35">
-        <Select :label="'Сортировать по:'"
-                :options="options"
-                v-model="selectedValue"
-                @change="onOptionChangeTest"
+        <Select
+            :label="'Сортировать по:'"
+            :options="options"
+            v-model="selectedValue"
+            @change="onSortChange"
         />
 
-        <Select :label="'Материал'"
-                :options="materialOptions"
-                v-model="selectedValueMaterial"
-                @change="onOptionChange"
+        <Select
+            :label="'Материал'"
+            :options="materialOptions"
+            v-model="selectedValueMaterial"
+            @change="onOptionChange"
         />
       </div>
     </section>
 
     <section>
-      <CardProduct></CardProduct>
+      <CardProduct :products="sortedProducts"></CardProduct>
     </section>
   </div>
 </template>
