@@ -9,7 +9,6 @@ interface Option {
 const props = defineProps<{
   options: Option[];
   label: string;
-  modelValue: string | number;
 }>();
 
 const emit = defineEmits<{
@@ -20,7 +19,6 @@ const emit = defineEmits<{
 function handleChange(event: Event): void {
   const target = event.target as HTMLSelectElement;
   const value = target.value;
-  emit("update:modelValue", value);
   emit("change", value);
 }
 </script>

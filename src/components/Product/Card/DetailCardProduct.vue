@@ -11,6 +11,7 @@ const props = defineProps<{ product: Product }>();
       <h3>{{ props.product.name }}</h3>
       <p v-if="props.product.code">Код: {{ props.product.code }}</p>
       <p v-else>Код отсутствует</p>
+      <p>Материал: {{props.product.material}}</p>
     </div>
 
     <FooterCardProduct :product="product"></FooterCardProduct>

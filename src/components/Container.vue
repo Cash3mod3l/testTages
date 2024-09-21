@@ -8,27 +8,12 @@ import {useProductCardStore} from "~/src/stores/ProductCardStore";
 import {storeToRefs} from "pinia";
 
 const productStore = useProductCardStore();
-
-const selectedValue = ref('');
-const selectedValueMaterial = ref("");
+const materialStore = useMaterialProductStore();
 
 const optionsPriceSelect = ref([
   {value: 'asc', text: 'Цена по возрастанию'},
   {value: 'desc', text: 'Цена по убыванию'},
 ]);
-
-const onSortPriceProductChange = (newValue: string | number) => {
-  productStore.sortOrder = newValue;
-  productStore.sortedProducts();
-};
-
-const onSortMaterialProductChange = (newValue: string | number) => {
-  productStore.sortOrder = newValue;
-  productStore.sortedMaterialProducts()
-};
-
-const materialStore = useMaterialProductStore();
-
 
 const optionsMaterialsSelect = computed(() => {
   return materialStore.materials.map(material => ({
@@ -38,13 +23,20 @@ const optionsMaterialsSelect = computed(() => {
 });
 
 
-let {products} = storeToRefs(productStore)
+const onSortPriceProductChange = (newValue: string) => {
+  productStore.sortOrder = newValue;
+};
 
+const onSortMaterialProductChange = (newValue: number) => {
+  productStore.materialId = Number(newValue);
+};
 
-onMounted(() => {
-  materialStore.getMaterials();
-  productStore.getProducts();
-});
+const { getSorterProducts } = storeToRefs(productStore);
+
+onBeforeMount (() => {
+  materialStore.fetchMaterials();
+  productStore.fetchProducts();
+})
 </script>
 
 <template>
@@ -60,21 +52,19 @@ onMounted(() => {
         <Select
             :label="'Сортировать по:'"
             :options="optionsPriceSelect"
-            v-model="selectedValue"
             @change="onSortPriceProductChange"
         />
 
         <Select
             :label="'Материал'"
             :options="optionsMaterialsSelect"
-            v-model="selectedValueMaterial"
             @change="onSortMaterialProductChange"
         />
       </div>
     </section>
 
     <section>
-      <CardProduct :products="products"></CardProduct>
+      <CardProduct :products="getSorterProducts"></CardProduct>
     </section>
   </div>
 </template>
@@ -82,7 +72,7 @@ onMounted(() => {
 <style scoped>
 .container {
   display: block;
-  margin-left: 100px;
+  margin-left: 150px;
   padding-top: 10px;
 }
 

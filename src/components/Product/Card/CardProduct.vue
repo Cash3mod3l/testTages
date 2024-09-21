@@ -33,7 +33,7 @@ const props = defineProps<{ products: Product[] }>();
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 45px;
 }
 
 .block-card {

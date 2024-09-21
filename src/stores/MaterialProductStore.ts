@@ -11,7 +11,7 @@ export const useMaterialProductStore = defineStore("materialProductStore", {
         materials: [] as Material[],
     }),
     actions: {
-        getMaterials(): Promise<void> {
+        fetchMaterials(): Promise<void> {
             return request<Material[]>({
                 method: "GET",
                 url: "/data/materials.json",
