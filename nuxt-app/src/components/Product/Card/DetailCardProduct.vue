@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Product} from "~/src/types/product/Product";
+import type {Product} from "~/src/types/Product";
 import FooterCardProduct from "~/src/components/Product/Card/FooterCardProduct.vue";
 
 const props = defineProps<{ product: Product }>();

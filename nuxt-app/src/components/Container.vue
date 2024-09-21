@@ -2,34 +2,50 @@
 import Header from '~/src/components/elements/Header/Header.vue';
 import Select from '~/src/components/elements/Select/Select.vue';
 import CardProduct from '~/src/components/Product/Card/CardProduct.vue';
-import { useProductCardStore } from '~/src/store/ProductCardStore';
-import { ref, onMounted, computed } from 'vue';
+import {ref, onMounted, computed} from 'vue';
+import {useMaterialProductStore} from "~/src/stores/MaterialProductStore";
+import {useProductCardStore} from "~/src/stores/ProductCardStore";
+import {useSortMaterialProduct} from "~/src/stores/SortMaterialProduct";
+import {storeToRefs} from "pinia";
 
+const selectedValue = ref('');
+const sortMaterialProduct = useSortMaterialProduct();
 const productStore = useProductCardStore();
 
-const selectedValue = ref('asc');
-const selectedValueMaterial = ref('');
-
-const options = ref([
-  { value: 'asc', text: 'Цена по возрастанию' },
-  { value: 'desc', text: 'Цена по убыванию' },
+const optionsPriceSelect = ref([
+  {value: 'asc', text: 'Цена по возрастанию'},
+  {value: 'desc', text: 'Цена по убыванию'},
 ]);
 
-const materialOptions = ref([]);
-
-const onSortChange = (newValue: 'asc' | 'desc') => {
-  productStore.setSortOrder(newValue);
+const onSortChange = (newValue: string | number) => {
+  productStore.sortOrder = newValue;
+  /*productStore.sortedProducts();*/
 };
 
 const onOptionChange = (newValue: string | number) => {
-  console.log('Выбран материал:', newValue);
+  productStore.sortOrder = newValue;
+  productStore.sortedMaterialProducts()
 };
 
-onMounted(() => {
-  productStore.getProducts();
+const materialStore = useMaterialProductStore();
+const selectedValueMaterial = ref("");
+
+const optionsMaterialsSelect = computed(() => {
+  console.log('materials для options:', materialStore.materials);
+  return materialStore.materials.map(material => ({
+    value: material.id,
+    text: material.name,
+  }));
 });
 
-const sortedProducts = computed(() => productStore.sortedProducts);
+
+let {products} = storeToRefs(productStore)
+
+
+onMounted(() => {
+  materialStore.getMaterials();
+  productStore.getProducts();
+});
 </script>
 
 <template>
@@ -44,14 +60,14 @@ const sortedProducts = computed(() => productStore.sortedProducts);
       <div class="inline-flex-spacing-35">
         <Select
             :label="'Сортировать по:'"
-            :options="options"
+            :options="optionsPriceSelect"
             v-model="selectedValue"
             @change="onSortChange"
         />
 
         <Select
             :label="'Материал'"
-            :options="materialOptions"
+            :options="optionsMaterialsSelect"
             v-model="selectedValueMaterial"
             @change="onOptionChange"
         />
@@ -59,7 +75,7 @@ const sortedProducts = computed(() => productStore.sortedProducts);
     </section>
 
     <section>
-      <CardProduct :products="sortedProducts"></CardProduct>
+      <CardProduct :products="products"></CardProduct>
     </section>
   </div>
 </template>

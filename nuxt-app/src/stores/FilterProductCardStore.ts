@@ -1,12 +1,12 @@
 import {defineStore} from "pinia";
-import type {Product} from "~/src/types/product/Product";
+import type {Product} from "~/src/types/Product";
 import {request} from "~/src/request/request";
 
 function getPrice(product: Product): number {
     return product.price.current_price || product.price.old_price;
 }
 
-export const useProductCardStore = defineStore("productCardStore",
+export const useFilterProductCardStore = defineStore("filterProductCardStore",
     {
         state: (): object => ({
             products: [] as Product[],

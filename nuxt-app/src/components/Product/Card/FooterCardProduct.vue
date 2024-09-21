@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Product} from "~/src/types/product/Product";
+import type {Product} from "~/src/types/Product";
 import FavoriteButton from "~/src/components/elements/Buttons/FavoriteButton.vue";
 import BasketButton from "~/src/components/elements/Buttons/BasketButton.vue";
 
