@@ -5,33 +5,32 @@ import CardProduct from '~/src/components/Product/Card/CardProduct.vue';
 import {ref, onMounted, computed} from 'vue';
 import {useMaterialProductStore} from "~/src/stores/MaterialProductStore";
 import {useProductCardStore} from "~/src/stores/ProductCardStore";
-import {useSortMaterialProduct} from "~/src/stores/SortMaterialProduct";
 import {storeToRefs} from "pinia";
 
-const selectedValue = ref('');
-const sortMaterialProduct = useSortMaterialProduct();
 const productStore = useProductCardStore();
+
+const selectedValue = ref('');
+const selectedValueMaterial = ref("");
 
 const optionsPriceSelect = ref([
   {value: 'asc', text: 'Цена по возрастанию'},
   {value: 'desc', text: 'Цена по убыванию'},
 ]);
 
-const onSortChange = (newValue: string | number) => {
+const onSortPriceProductChange = (newValue: string | number) => {
   productStore.sortOrder = newValue;
-  /*productStore.sortedProducts();*/
+  productStore.sortedProducts();
 };
 
-const onOptionChange = (newValue: string | number) => {
+const onSortMaterialProductChange = (newValue: string | number) => {
   productStore.sortOrder = newValue;
   productStore.sortedMaterialProducts()
 };
 
 const materialStore = useMaterialProductStore();
-const selectedValueMaterial = ref("");
+
 
 const optionsMaterialsSelect = computed(() => {
-  console.log('materials для options:', materialStore.materials);
   return materialStore.materials.map(material => ({
     value: material.id,
     text: material.name,
@@ -62,14 +61,14 @@ onMounted(() => {
             :label="'Сортировать по:'"
             :options="optionsPriceSelect"
             v-model="selectedValue"
-            @change="onSortChange"
+            @change="onSortPriceProductChange"
         />
 
         <Select
             :label="'Материал'"
             :options="optionsMaterialsSelect"
             v-model="selectedValueMaterial"
-            @change="onOptionChange"
+            @change="onSortMaterialProductChange"
         />
       </div>
     </section>
