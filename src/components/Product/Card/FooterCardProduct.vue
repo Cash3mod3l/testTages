@@ -7,40 +7,77 @@ const props = defineProps<{ product: Product }>();
 </script>
 
 <template>
-  <div class="footer-card-section">
-    <div class="price-section">
-      <span class="current-price">{{ props.product.price.current_price }} ₽</span>
-      <span v-if="props.product.price.old_price" class="old-price">{{ props.product.price.old_price }} ₽</span>
+  <div class="card-footer">
+    <div class="card-footer__price">
+      <span class="card-footer__price-old" v-if="props.product.price.old_price">{{ props.product.price.old_price }} ₽</span>
+      <span class="card-footer__price-current">{{ props.product.price.current_price }} ₽</span>
     </div>
 
-    <div class="buy-section">
-      <BasketButton :product-id="props.product.id"></BasketButton>
-
-      <FavoriteButton :product-id="props.product.id"></FavoriteButton>
+    <div class="card-footer__actions">
+      <BasketButton :product-id="props.product.id" class="card-footer__action-icon"></BasketButton>
+      <FavoriteButton :product-id="props.product.id" class="card-footer__action-icon"></FavoriteButton>
     </div>
   </div>
 </template>
 
 <style scoped>
-.footer-card-section {
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.card-footer__price {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: baseline;
 }
 
-.price-section {
-  margin-top: 10px;
-}
-
-.current-price {
+.card-footer__price-current {
   font-weight: bold;
   font-size: 18px;
+  color: #000;
+  white-space: nowrap;
 }
 
-.old-price {
+.card-footer__price-old {
+  font-weight: bold;
   text-decoration: line-through;
-  color: #999999;
-  margin-left: 10px;
+  color: #999;
+  margin-right: 10px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.card-footer__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.card-footer__action-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-footer__price {
+    max-width: 100%;
+  }
+
+  .card-footer__actions {
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
 }
 </style>

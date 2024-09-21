@@ -11,17 +11,17 @@ const props = defineProps<{ products: Product[] }>();
         v-for="product in props.products"
         :key="product.id"
         :datatype="product.material"
-        class="block-card"
+        class="product-grid__card"
     >
       <div
-          class="badge"
+          class="product-grid__badge"
           v-if="product.price.old_price && product.price.old_price > product.price.current_price"
       >
         Скидка
       </div>
 
-      <div class="image-container">
-        <img :src="product.image.url" :alt="product.name" class="product-image"/>
+      <div class="product-grid__image-container">
+        <img :src="product.image.url" :alt="product.name" class="product-grid__image"/>
       </div>
 
       <DetailCardProduct :product="product"></DetailCardProduct>
@@ -31,29 +31,73 @@ const props = defineProps<{ products: Product[] }>();
 
 <style scoped>
 .product-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 45px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(auto, 260px));
+  gap: 35px;
 }
 
-.block-card {
-  width: 336px;
+.product-grid__card {
+  width: 250px;
   height: auto;
   border: 1px solid #cccccc;
-  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease;
 }
 
-.image-container {
+.product-grid__card:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .product-grid__card {
+    width: 100%;
+  }
+}
+
+.product-grid__image-container {
+  position: relative;
   width: 100%;
-  height: 60%;
+  padding-top: 100%;
   overflow: hidden;
 }
 
-.product-image {
-  width: 100%;
-  max-height: 260px;
-  height: 125%;
+.product-grid__badge {
+  background-color: #ff4747;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  max-width: 60px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.product-grid__image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 200px;
+  max-height: 200px;
+}
+
+@media (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 2fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -6,20 +6,42 @@ const props = defineProps<{ product: Product }>();
 </script>
 
 <template>
-  <div class="product-details">
-    <div>
-      <h3>{{ props.product.name }}</h3>
-      <p v-if="props.product.code">Код: {{ props.product.code }}</p>
-      <p v-else>Код отсутствует</p>
-      <p>Материал: {{props.product.material}}</p>
+  <div class="product-container-detail">
+    <div class="product-container-detail__info">
+      <span class="product-container-detail__code">{{ props.product.code || 'Код отсутствует' }}</span>
+      <h3 class="product-container-detail__name">{{ props.product.name }}</h3>
     </div>
-
-    <FooterCardProduct :product="product"></FooterCardProduct>
+    <FooterCardProduct :product="props.product"></FooterCardProduct>
   </div>
 </template>
 
 <style scoped>
-.product-details {
+.product-container-detail {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-container-detail__info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.product-container-detail__code {
+  font-size: 0.8rem;
+  color: #9e9e9e;
+}
+
+.product-container-detail__name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+@media (max-width: 600px) {
+  .product-container-detail__name {
+    font-size: 1.2rem;
+  }
 }
 </style>

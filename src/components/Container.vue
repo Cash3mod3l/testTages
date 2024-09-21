@@ -40,15 +40,15 @@ onBeforeMount (() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="page">
     <Header></Header>
 
-    <section class="title-padding-top-bottom-10">
-      <span class="text">Комплекты стеллажных систем</span>
+    <section class="page__title">
+      <span class="page__title-text">Комплекты стеллажных систем</span>
     </section>
 
-    <section>
-      <div class="inline-flex-spacing-35">
+    <section class="filters">
+      <div class="filters__group">
         <Select
             :label="'Сортировать по:'"
             :options="optionsPriceSelect"
@@ -63,32 +63,80 @@ onBeforeMount (() => {
       </div>
     </section>
 
-    <section>
+    <section class="products">
       <CardProduct :products="getSorterProducts"></CardProduct>
     </section>
   </div>
 </template>
 
 <style scoped>
-.container {
+.page {
   display: block;
-  margin-left: 150px;
-  padding-top: 10px;
+  margin-left: 300px;
+  padding: 20px;
 }
 
-.text {
-  font-family: SF Pro Display;
+.page__title {
+  padding: 20px 0;
+}
+
+.page__title-text {
+  font-family: 'SF Pro Display', sans-serif;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 48px;
+  font-size: 2rem;
+  line-height: 2.5rem;
 }
 
-.title-padding-top-bottom-10 {
-  padding: 10px 0 10px 0;
+.filters {
+  margin-bottom: 20px;
+  display: flex;
 }
 
-.inline-flex-spacing-35 {
-  display: inline-flex;
-  gap: 35px;
+.filters__group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.products {
+  display: grid;
+  gap: 45px;
+}
+
+@media (max-width: 1200px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .products {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .filters__group {
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page__title-text {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .page {
+    margin-left: 0;
+  }
 }
 </style>
