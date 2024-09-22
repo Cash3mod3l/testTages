@@ -70,13 +70,13 @@ onBeforeMount (() => {
 
 <style scoped>
 .page {
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
   padding: 20px;
 }
 
 .page__section-title {
-  padding: 20px 0;
+  padding: 35px 0;
 }
 
 .page__section-title-text {
@@ -110,7 +110,6 @@ onBeforeMount (() => {
 @media (max-width: 600px) {
   .page {
     width: auto;
-    margin-left: 15px;
   }
 
   .page__filters-group {

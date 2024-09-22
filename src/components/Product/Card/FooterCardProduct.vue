@@ -63,6 +63,7 @@ const props = defineProps<{ product: Product }>();
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 768px) {

@@ -40,7 +40,7 @@ const props = defineProps<{ products: Product[] }>();
 }
 
 .product-grid__card {
-  width: 250px;
+  width: 336px;
   height: auto;
   border: 1px solid #cccccc;
   overflow: hidden;
