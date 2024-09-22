@@ -42,12 +42,12 @@ onBeforeMount (() => {
   <div class="page">
     <Header></Header>
 
-    <section class="page__title">
-      <span class="page__title-text">Комплекты стеллажных систем</span>
+    <section class="page__section-title">
+      <span class="page__section-title-text">Комплекты стеллажных систем</span>
     </section>
 
-    <section class="filters">
-      <div class="filters__group">
+    <section class="page__section-filters">
+      <div class="page__filters-group">
         <Select
             :label="'Сортировать по:'"
             :options="optionsPriceSelect"
@@ -62,7 +62,7 @@ onBeforeMount (() => {
       </div>
     </section>
 
-    <section class="products">
+    <section class="page__products">
       <CardProduct :products="getSorterProducts"></CardProduct>
     </section>
   </div>
@@ -75,51 +75,51 @@ onBeforeMount (() => {
   padding: 20px;
 }
 
-.page__title {
+.page__section-title {
   padding: 20px 0;
 }
 
-.page__title-text {
+.page__section-title-text {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;
 }
 
-.filters {
+.page__section-filters {
   margin-bottom: 20px;
 }
 
-.filters__group {
+.page__filters-group {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.products {
+.page__products {
   display: grid;
   gap: 45px;
 }
 
 @media (max-width: 900px) {
-  .page {
+  .page__products {
     margin-left: 0;
   }
 }
 
 @media (max-width: 600px) {
-  .filters__group {
+  .page__filters-group {
     gap: 10px;
     flex-direction: column;
     align-items: center;
   }
 
-  .page__title-text {
+  .page__section-title-text {
     font-size: 1.5rem;
     line-height: 2rem;
   }
 
-  .page {
+  .page__products {
     margin-left: 30px;
   }
 }
