@@ -53,12 +53,14 @@ export default defineComponent({
   align-items: center;
   padding: 0;
   margin: 0;
+  gap: 10px;
 }
 
 .breadcrumb__item {
   margin-right: 5px;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .breadcrumb__link {
@@ -78,5 +80,12 @@ export default defineComponent({
 
 .breadcrumb__separator {
   margin-left: 5px;
+}
+
+
+@media (max-width: 600px) {
+  .breadcrumb__item {
+    gap: 0;
+  }
 }
 </style>

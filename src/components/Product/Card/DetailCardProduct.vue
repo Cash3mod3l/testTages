@@ -8,7 +8,7 @@ const props = defineProps<{ product: Product }>();
 <template>
   <div class="product-container-detail">
     <div class="product-container-detail__info">
-      <span class="product-container-detail__code">{{ props.product.code || 'Код отсутствует' }}</span>
+      <span class="product-container-detail__code">{{ props.product.code || "Код отсутствует" }}</span>
       <h3 class="product-container-detail__name">{{ props.product.name }}</h3>
     </div>
   </div>
@@ -28,7 +28,7 @@ const props = defineProps<{ product: Product }>();
 }
 
 .product-container-detail__code {
-  font-size: 0.8rem;
+  font-size: 10px;
   color: #9e9e9e;
 }
 
@@ -36,6 +36,7 @@ const props = defineProps<{ product: Product }>();
   font-size: 1.2rem;
   font-weight: 500;
   margin: 5px 0;
+  padding-top: 8px;
 }
 
 @media (max-width: 600px) {

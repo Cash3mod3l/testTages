@@ -75,7 +75,7 @@ onBeforeMount (() => {
 }
 
 body {
-  font-family: 'SF Pro Display', sans-serif !important;
+  font-family: 'SF Pro Display' !important;
 }
 
 .page {
@@ -95,12 +95,12 @@ body {
 }
 
 .page__section-filters {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .page__filters-group {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
 }
 

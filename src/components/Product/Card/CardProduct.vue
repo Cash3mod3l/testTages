@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Product} from '~/src/types/Product';
+import type { Product } from '~/src/types/Product';
 import DetailCardProduct from '~/src/components/Product/Card/DetailCardProduct.vue';
 import FooterCardProduct from "~/src/components/Product/Card/FooterCardProduct.vue";
 
@@ -14,13 +14,6 @@ const props = defineProps<{ products: Product[] }>();
         :datatype="product.material"
         class="product-card-container__card"
     >
-      <div
-          class="product-card-container__badge"
-          v-if="product.price.old_price && product.price.old_price > product.price.current_price"
-      >
-        Скидка
-      </div>
-
       <div class="product-card-container__image-container">
         <img :src="product.image.url" :alt="product.name" class="product-card-container__image"/>
       </div>
@@ -28,43 +21,38 @@ const props = defineProps<{ products: Product[] }>();
       <DetailCardProduct :product="product"></DetailCardProduct>
 
       <FooterCardProduct :product="product"></FooterCardProduct>
+
+      <div
+          v-if="product.price.old_price && product.price.old_price > product.price.current_price"
+          class="product-card-container__badge-wrapper"
+      ></div>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .product-card-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(auto, 260px));
-  gap: 35px;
+  gap: 50px;
 }
 
 .product-card-container__card {
+  position: relative;
   width: 336px;
   height: auto;
   border: 1px solid #cccccc;
   overflow: hidden;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   font-family: "SF UI Text" !important;
 }
 
 .product-card-container__image-container {
   position: relative;
   width: 100%;
-  padding-top: 100%;
+  padding-top: 68%;
   overflow: hidden;
-}
-
-.product-card-container__badge {
-  background-color: #ff4747;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 10px;
-  max-width: 60px;
-  text-align: center;
-  margin-top: 8px;
 }
 
 .product-card-container__image {
@@ -74,6 +62,19 @@ const props = defineProps<{ products: Product[] }>();
   transform: translate(-50%, -50%);
   max-width: 200px;
   max-height: 200px;
+}
+
+.product-card-container__badge-wrapper::after {
+  content: "Скидка";
+  background-color: #ff4747;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 10px;
+  position: absolute;
+  top: 10px;
+  max-width: 60px;
+  text-align: center;
 }
 
 @media (max-width: 1200px) {

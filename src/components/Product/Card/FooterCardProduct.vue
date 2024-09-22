@@ -27,6 +27,7 @@ const props = defineProps<{ product: Product }>();
   align-items: center;
   padding: 10px;
   background-color: #fff;
+  margin-top: -25px;
 }
 
 .product-card-container-footer__price {
@@ -36,14 +37,14 @@ const props = defineProps<{ product: Product }>();
 }
 
 .product-card-container-footer__price-current {
-  font-weight: bold;
+  font-weight: 400;
   font-size: 18px;
   color: #000;
   white-space: nowrap;
 }
 
 .product-card-container-footer__price-old {
-  font-weight: bold;
+  font-weight: 400;
   text-decoration: line-through;
   color: #999;
   margin-right: 10px;
@@ -54,15 +55,12 @@ const props = defineProps<{ product: Product }>();
 .product-card-container-footer__actions {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  padding-top: 6px;
 }
 
 .product-card-container-footer__action-icon {
-  width: 24px;
-  height: 24px;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-left: 20px;
 }
 
@@ -79,6 +77,10 @@ const props = defineProps<{ product: Product }>();
   .product-card-container-footer__actions {
     margin-top: 10px;
     justify-content: flex-start;
+  }
+
+  .product-card-container-footer__action-icon {
+    margin-left: 0;
   }
 }
 </style>
