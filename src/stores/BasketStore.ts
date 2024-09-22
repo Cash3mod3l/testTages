@@ -4,8 +4,8 @@ import { ref } from "vue";
 export const useBasketStore = defineStore("basketStore", () => {
     const baskets = ref<string[]>([]);
 
-    const loadBaskets = () => {
-        const storedBaskets = localStorage.getItem("baskets");
+    const loadBaskets = (): void => {
+        const storedBaskets: string | null = localStorage.getItem("baskets");
         baskets.value = JSON.parse(storedBaskets || "[]");
     };
 

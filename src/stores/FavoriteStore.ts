@@ -3,15 +3,15 @@ import {ref} from "vue";
 export const useFavoriteStore = defineStore("favoriteStore", (): object => {
     const favorites = ref<string[]>([]);
 
-    const loadFavorites = () => {
-        const storedFavorites = localStorage.getItem("favorites");
+    const loadFavorites = (): void => {
+        const storedFavorites: string | null = localStorage.getItem("favorites");
         favorites.value = JSON.parse(storedFavorites || "[]");
     };
 
-    const toggleFavorite = (productId: string) => {
+    const toggleFavorite = (productId: string): void => {
         loadFavorites();
 
-        const index = favorites.value.indexOf(productId);
+        const index: number = favorites.value.indexOf(productId);
         if (index === -1) {
             favorites.value.push(productId);
         }

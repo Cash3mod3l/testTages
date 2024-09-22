@@ -41,7 +41,7 @@ const props = defineProps<{ products: Product[] }>();
   height: auto;
   border: 1px solid #cccccc;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
 

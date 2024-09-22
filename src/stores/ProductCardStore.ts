@@ -16,13 +16,13 @@ export const useProductCardStore = defineStore("productCardStore",
                 sortOrder: "asc" | "desc",
                 sortedProducts: Product[]
             }): Product[] {
-                return state.products.toSorted((a, b) => {
+                return state.products.toSorted((productOne: Product, productTwo: Product) => {
                     let compareValue: number = 0;
 
                     if (state.sortOrder === "asc") {
-                        compareValue = a.price.current_price - b.price.current_price;
+                        compareValue = productOne.price.current_price - productTwo.price.current_price;
                     } else {
-                        compareValue = b.price.current_price - a.price.current_price;
+                        compareValue = productTwo.price.current_price - productOne.price.current_price;
                     }
 
                     return compareValue;
@@ -53,10 +53,10 @@ export const useProductCardStore = defineStore("productCardStore",
                     method: "GET",
                     url: "/data/items.json",
                 })
-                    .then((data: Product[]) => {
+                    .then((data: Product[]): void => {
                         this.products = data;
                     })
-                    .catch((error) => {
+                    .catch((error): void => {
                         console.error(error);
                     });
             }

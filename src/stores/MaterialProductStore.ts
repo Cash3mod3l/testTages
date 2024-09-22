@@ -16,12 +16,10 @@ export const useMaterialProductStore = defineStore("materialProductStore", {
                 method: "GET",
                 url: "/data/materials.json",
             })
-                .then((data: Material[]) => {
-                    console.log('Полученные данные:', data);
+                .then((data: Material[]): void => {
                     this.materials = data;
-                    console.log('Обновленное состояние materials:', this.materials);
                 })
-                .catch((error) => {
+                .catch((error): void => {
                     console.error('Ошибка при получении материалов:', error);
                 });
         },
