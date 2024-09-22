@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type {Product} from '~/src/types/Product';
 import DetailCardProduct from '~/src/components/Product/Card/DetailCardProduct.vue';
+import FooterCardProduct from "~/src/components/Product/Card/FooterCardProduct.vue";
 
 const props = defineProps<{ products: Product[] }>();
 </script>
@@ -25,6 +26,8 @@ const props = defineProps<{ products: Product[] }>();
       </div>
 
       <DetailCardProduct :product="product"></DetailCardProduct>
+
+      <FooterCardProduct :product="product"></FooterCardProduct>
     </div>
   </div>
 </template>
@@ -42,7 +45,7 @@ const props = defineProps<{ products: Product[] }>();
   border: 1px solid #cccccc;
   overflow: hidden;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .product-grid__image-container {

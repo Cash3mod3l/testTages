@@ -70,8 +70,8 @@ onBeforeMount (() => {
 
 <style scoped>
 .page {
-  display: block;
-  margin-left: 300px;
+  width: 50%;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -108,6 +108,11 @@ onBeforeMount (() => {
 }
 
 @media (max-width: 600px) {
+  .page {
+    width: auto;
+    margin-left: 15px;
+  }
+
   .page__filters-group {
     gap: 10px;
     flex-direction: column;
@@ -120,7 +125,8 @@ onBeforeMount (() => {
   }
 
   .page__products {
-    margin-left: 30px;
+    display: flex;
+    justify-content: center;
   }
 }
 </style>

@@ -11,7 +11,6 @@ const props = defineProps<{ product: Product }>();
       <span class="product-container-detail__code">{{ props.product.code || 'Код отсутствует' }}</span>
       <h3 class="product-container-detail__name">{{ props.product.name }}</h3>
     </div>
-    <FooterCardProduct :product="props.product"></FooterCardProduct>
   </div>
 </template>
 

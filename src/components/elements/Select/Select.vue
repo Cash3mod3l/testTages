@@ -79,8 +79,8 @@ function handleChange(event: Event): void {
   appearance: none;
   width: 100%;
   height: 40px;
-  padding: 10px;
-  border: 1px solid #cccccc;
+  padding: 8px 10px;
+  border: 1px solid rgba(242, 242, 242, 1);
   background-color: #f5f5f5;
   font-family: "SF Pro Display", sans-serif;
   font-size: 14px;
