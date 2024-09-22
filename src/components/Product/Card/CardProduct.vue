@@ -43,17 +43,6 @@ const props = defineProps<{ products: Product[] }>();
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  transition: transform 0.3s ease;
-}
-
-.product-grid__card:hover {
-  transform: scale(1.03);
-}
-
-@media (max-width: 768px) {
-  .product-grid__card {
-    width: 100%;
-  }
 }
 
 .product-grid__image-container {
@@ -71,7 +60,7 @@ const props = defineProps<{ products: Product[] }>();
   padding: 4px 10px;
   max-width: 60px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .product-grid__image {
@@ -89,13 +78,13 @@ const props = defineProps<{ products: Product[] }>();
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1030px) {
   .product-grid {
-    grid-template-columns: repeat(1, 2fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .product-grid {
     grid-template-columns: 1fr;
   }

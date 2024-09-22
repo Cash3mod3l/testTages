@@ -22,7 +22,6 @@ const optionsMaterialsSelect = computed(() => {
   }));
 });
 
-
 const onSortPriceProductChange = (newValue: string) => {
   productStore.sortOrder = newValue;
 };
@@ -89,7 +88,6 @@ onBeforeMount (() => {
 
 .filters {
   margin-bottom: 20px;
-  display: flex;
 }
 
 .filters__group {
@@ -103,27 +101,13 @@ onBeforeMount (() => {
   gap: 45px;
 }
 
-@media (max-width: 1200px) {
-  .products {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media (max-width: 900px) {
-  .products {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .page {
     margin-left: 0;
   }
 }
 
 @media (max-width: 600px) {
-  .products {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
   .filters__group {
     gap: 10px;
     flex-direction: column;
@@ -136,7 +120,7 @@ onBeforeMount (() => {
   }
 
   .page {
-    margin-left: 0;
+    margin-left: 30px;
   }
 }
 </style>

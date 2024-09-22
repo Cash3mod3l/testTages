@@ -12,7 +12,6 @@ export default defineComponent({
     crumbs: {
       type: Array as PropType<Crumb[]>,
       required: true,
-      default: () => [],
     },
   },
 });
@@ -21,21 +20,31 @@ export default defineComponent({
 <template>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li v-for="(crumb, index) in crumbs" :key="index" class="breadcrumb-item">
-        <a class="text"
+      <li
+          v-for="(crumb, index) in crumbs"
+          :key="index"
+          class="breadcrumb__item"
+      >
+        <a
             v-if="crumb.url"
             :href="crumb.url"
             :style="{ color: crumb.color }"
+            class="breadcrumb__link"
         >
           {{ crumb.label }}
         </a>
-        <span v-else :style="{ color: crumb.color }">{{ crumb.label }}</span>
-        <span v-if="index < crumbs.length - 1"> / </span>
+        <span
+            v-else
+            :style="{ color: crumb.color }"
+            class="breadcrumb__text"
+        >
+          {{ crumb.label }}
+        </span>
+        <span v-if="index < crumbs.length - 1" class="breadcrumb__separator">/</span>
       </li>
     </ul>
   </nav>
 </template>
-
 
 <style scoped>
 .breadcrumb {
@@ -43,16 +52,31 @@ export default defineComponent({
   display: flex;
   align-items: center;
   padding: 0;
+  margin: 0;
 }
 
-.breadcrumb-item {
+.breadcrumb__item {
   margin-right: 5px;
+  display: flex;
+  align-items: center;
 }
 
-.text {
-  font-family: SF UI Text;
+.breadcrumb__link {
+  font-family: 'SF UI Text', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 16px;
+  text-decoration: none;
+}
+
+.breadcrumb__text {
+  font-family: 'SF UI Text', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.breadcrumb__separator {
+  margin-left: 5px;
 }
 </style>

@@ -24,15 +24,16 @@ function handleChange(event: Event): void {
 </script>
 
 <template>
-  <div class="display-grid">
-    <label class="margin-bottom-10 margin-left-10" for="dynamic-select">{{ props.label }}</label>
+  <div class="select-wrapper">
+    <label class="select-wrapper__label" for="dynamic-select">{{ props.label }}</label>
     <select
-        class="select"
+        class="select-wrapper__select"
+        id="dynamic-select"
         :value="props.modelValue"
         @change="handleChange"
     >
       <option
-          class="text-label"
+          class="select-wrapper__option"
           v-for="option in props.options"
           :key="option.value"
           :value="option.value"
@@ -40,35 +41,67 @@ function handleChange(event: Event): void {
         {{ option.text }}
       </option>
     </select>
+
+    <span class="select-wrapper__icon">
+      <i>
+        <svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M16.2929 0.292908L17.7071 1.70712L9.00001 10.4142L0.292908 1.70712L1.70712 0.292908L9.00001 7.5858L16.2929 0.292908Z"
+                fill="black"
+          />
+        </svg>
+      </i>
+    </span>
   </div>
 </template>
 
 <style scoped>
-.text-label {
-  font-family: SF Pro Display;
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 280px;
+  width: 100%;
+}
+
+.select-wrapper__label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0.03em;
+  color: #000000;
+}
+
+.select-wrapper__select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  background-color: #f5f5f5;
+  font-family: "SF Pro Display", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 0.03em;
   text-align: left;
+  outline: none;
+  cursor: pointer;
 }
 
-.select {
-  max-width: 280px;
-  height: 40px;
-  padding: 10px;
-  width: 20em;
+.select-wrapper__icon {
+  position: absolute;
+  right: 10px;
+  top: 75%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
 }
 
-.display-grid {
-  display: grid;
-}
-
-.margin-bottom-10 {
-  margin-bottom: 10px;
-}
-
-.margin-left-10 {
-  margin-left: 10px;
+.select-wrapper__option {
+  font-size: 14px;
 }
 </style>
