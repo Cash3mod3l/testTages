@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import {defineProps, defineEmits} from "vue";
 
-interface Option {
+type OptionProperty = {
   value: string | number;
   text: string;
 }
 
-const props = defineProps<{
-  options: Option[];
+type SelectProperty = {
+  options: OptionProperty[];
   label: string;
-}>();
+}
+
+const props = defineProps<SelectProperty>();
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: string | number): void;

@@ -7,21 +7,21 @@ const props = defineProps<{ product: Product }>();
 </script>
 
 <template>
-  <div class="card-footer">
-    <div class="card-footer__price">
-      <span class="card-footer__price-old" v-if="props.product.price.old_price">{{ props.product.price.old_price }} ₽</span>
-      <span class="card-footer__price-current">{{ props.product.price.current_price }} ₽</span>
+  <div class="product-card-container-footer">
+    <div class="product-card-container-footer__price">
+      <span class="product-card-container-footer__price-old" v-if="props.product.price.old_price">{{ props.product.price.old_price }} ₽</span>
+      <span class="product-card-container-footer__price-current">{{ props.product.price.current_price }} ₽</span>
     </div>
 
-    <div class="card-footer__actions">
-      <BasketButton :product-id="props.product.id" class="card-footer__action-icon"></BasketButton>
-      <FavoriteButton :product-id="props.product.id" class="card-footer__action-icon"></FavoriteButton>
+    <div class="product-card-container-footer__actions">
+      <BasketButton :product-id="props.product.id" class="product-card-container-footer__action-icon"></BasketButton>
+      <FavoriteButton :product-id="props.product.id" class="product-card-container-footer__action-icon"></FavoriteButton>
     </div>
   </div>
 </template>
 
 <style scoped>
-.card-footer {
+.product-card-container-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,20 +29,20 @@ const props = defineProps<{ product: Product }>();
   background-color: #fff;
 }
 
-.card-footer__price {
+.product-card-container-footer__price {
   display: flex;
   flex-direction: row;
   align-items: baseline;
 }
 
-.card-footer__price-current {
+.product-card-container-footer__price-current {
   font-weight: bold;
   font-size: 18px;
   color: #000;
   white-space: nowrap;
 }
 
-.card-footer__price-old {
+.product-card-container-footer__price-old {
   font-weight: bold;
   text-decoration: line-through;
   color: #999;
@@ -51,13 +51,13 @@ const props = defineProps<{ product: Product }>();
   white-space: nowrap;
 }
 
-.card-footer__actions {
+.product-card-container-footer__actions {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.card-footer__action-icon {
+.product-card-container-footer__action-icon {
   width: 24px;
   height: 24px;
   display: flex;
@@ -67,16 +67,16 @@ const props = defineProps<{ product: Product }>();
 }
 
 @media screen and (max-width: 768px) {
-  .card-footer {
+  .product-card-container-footer {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .card-footer__price {
+  .product-card-container-footer__price {
     max-width: 100%;
   }
 
-  .card-footer__actions {
+  .product-card-container-footer__actions {
     margin-top: 10px;
     justify-content: flex-start;
   }

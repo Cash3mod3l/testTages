@@ -9,8 +9,6 @@ export const useFavoriteStore = defineStore("favoriteStore", (): object => {
     };
 
     const toggleFavorite = (productId: string): void => {
-        loadFavorites();
-
         const index: number = favorites.value.indexOf(productId);
         if (index === -1) {
             favorites.value.push(productId);
@@ -21,9 +19,9 @@ export const useFavoriteStore = defineStore("favoriteStore", (): object => {
         localStorage.setItem("favorites", JSON.stringify(favorites.value));
     };
 
-    const isFavorite = (productId: string) => {
+    const inFavorite = (productId: string) => {
         return favorites.value.includes(productId);
     };
 
-    return { favorites, loadFavorites, toggleFavorite, isFavorite };
+    return { favorites, loadFavorites, toggleFavorite, inFavorite: inFavorite };
 })

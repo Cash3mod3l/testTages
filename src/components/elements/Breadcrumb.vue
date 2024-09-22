@@ -1,7 +1,7 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 
-interface Crumb {
+type Crumb = {
   label: string;
   url?: string;
   color?: string;

@@ -2,20 +2,23 @@ import {defineStore} from "pinia";
 import type {Product} from "~/src/types/Product";
 import {request} from '~/src/request/request';
 
+type ParamsProcessingProducts = {
+    products: Product[],
+    sortOrder: "asc" | "desc",
+    materialId: number
+}
+
+let state: ParamsProcessingProducts = {
+    products: [],
+    sortOrder: "asc",
+    materialId: 0
+};
 
 export const useProductCardStore = defineStore("productCardStore",
     {
-        state: () => ({
-            products: [] as Product[],
-            sortOrder: "asc" as "asc" | "desc",
-            materialId: 0 as number,
-        }),
+        state: () => (state),
         getters: {
-            orderByProducts(state: {
-                products: Product[],
-                sortOrder: "asc" | "desc",
-                sortedProducts: Product[]
-            }): Product[] {
+            orderByProducts(state: ParamsProcessingProducts): Product[] {
                 return state.products.toSorted((productOne: Product, productTwo: Product) => {
                     let compareValue: number = 0;
 
@@ -28,10 +31,7 @@ export const useProductCardStore = defineStore("productCardStore",
                     return compareValue;
                 });
             },
-            sortedMaterialProducts(state: {
-                products: Product[],
-                materialId: number,
-            }): Product[] {
+            sortedMaterialProducts(state: ParamsProcessingProducts): Product[] {
                 let sortedProducts: Product[] = this.orderByProducts;
 
                 if (state.materialId === 0) {

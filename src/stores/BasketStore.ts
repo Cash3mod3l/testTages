@@ -19,9 +19,9 @@ export const useBasketStore = defineStore("basketStore", () => {
         localStorage.setItem("baskets", JSON.stringify(baskets.value));
     };
 
-    const isBasket = (productId: string) => {
+    const inBasket = (productId: string) => {
         return baskets.value.includes(productId);
     };
 
-    return { baskets, loadBaskets, toggleBasket, isBasket };
+    return { baskets, loadBaskets, toggleBasket, inBasket: inBasket };
 });

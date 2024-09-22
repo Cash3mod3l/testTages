@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Header from '~/src/components/elements/Header/Header.vue';
-import Select from '~/src/components/elements/Select/Select.vue';
+import Header from '~/src/components/elements/Header.vue';
+import Select from '~/src/components/elements/Select.vue';
 import CardProduct from '~/src/components/Product/Card/CardProduct.vue';
 import {ref, onMounted, computed} from 'vue';
 import {useMaterialProductStore} from "~/src/stores/MaterialProductStore";
@@ -69,6 +69,15 @@ onBeforeMount (() => {
 </template>
 
 <style scoped>
+@font-face {
+  font-family: "SF UI Text";
+  src: url("/fonts/SF-UI-Text-Regular.otf");
+}
+
+body {
+  font-family: 'SF Pro Display', sans-serif !important;
+}
+
 .page {
   width: 75%;
   margin: 0 auto;
@@ -80,7 +89,6 @@ onBeforeMount (() => {
 }
 
 .page__section-title-text {
-  font-family: 'SF Pro Display', sans-serif;
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;

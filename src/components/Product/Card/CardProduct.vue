@@ -7,22 +7,22 @@ const props = defineProps<{ products: Product[] }>();
 </script>
 
 <template>
-  <div class="product-grid">
+  <div class="product-card-container">
     <div
         v-for="product in props.products"
         :key="product.id"
         :datatype="product.material"
-        class="product-grid__card"
+        class="product-card-container__card"
     >
       <div
-          class="product-grid__badge"
+          class="product-card-container__badge"
           v-if="product.price.old_price && product.price.old_price > product.price.current_price"
       >
         Скидка
       </div>
 
-      <div class="product-grid__image-container">
-        <img :src="product.image.url" :alt="product.name" class="product-grid__image"/>
+      <div class="product-card-container__image-container">
+        <img :src="product.image.url" :alt="product.name" class="product-card-container__image"/>
       </div>
 
       <DetailCardProduct :product="product"></DetailCardProduct>
@@ -33,29 +33,30 @@ const props = defineProps<{ products: Product[] }>();
 </template>
 
 <style scoped>
-.product-grid {
+.product-card-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(auto, 260px));
   gap: 35px;
 }
 
-.product-grid__card {
+.product-card-container__card {
   width: 336px;
   height: auto;
   border: 1px solid #cccccc;
   overflow: hidden;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  font-family: "SF UI Text" !important;
 }
 
-.product-grid__image-container {
+.product-card-container__image-container {
   position: relative;
   width: 100%;
   padding-top: 100%;
   overflow: hidden;
 }
 
-.product-grid__badge {
+.product-card-container__badge {
   background-color: #ff4747;
   color: white;
   font-size: 14px;
@@ -66,7 +67,7 @@ const props = defineProps<{ products: Product[] }>();
   margin-top: 8px;
 }
 
-.product-grid__image {
+.product-card-container__image {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -76,19 +77,19 @@ const props = defineProps<{ products: Product[] }>();
 }
 
 @media (max-width: 1200px) {
-  .product-grid {
+  .product-card-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 1030px) {
-  .product-grid {
+  .product-card-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .product-grid {
+  .product-card-container {
     grid-template-columns: 1fr;
   }
 }
