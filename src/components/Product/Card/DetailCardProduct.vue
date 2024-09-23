@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import type {Product} from "~/src/types/Product";
-import FooterCardProduct from "~/src/components/Product/Card/FooterCardProduct.vue";
+import type {ProductType} from "~/src/types/ProductType";
 
-const props = defineProps<{ product: Product }>();
+const props = defineProps<{ product: ProductType }>();
 </script>
 
 <template>
   <div class="product-container-detail">
     <div class="product-container-detail__info">
-      <span class="product-container-detail__code">{{ props.product.code || "Код отсутствует" }}</span>
+      <span class="product-container-detail__code">{{ props.product.code || "Нет кода продукта" }}</span>
       <h3 class="product-container-detail__name">{{ props.product.name }}</h3>
     </div>
   </div>
@@ -29,7 +28,6 @@ const props = defineProps<{ product: Product }>();
 
 .product-container-detail__code {
   font-size: 10px;
-  font-family: "SF UI Text", sans-serif;
   color: #9e9e9e;
 }
 

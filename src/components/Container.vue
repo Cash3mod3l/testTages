@@ -2,7 +2,7 @@
 import Header from '~/src/components/elements/Header.vue';
 import Select from '~/src/components/elements/Select.vue';
 import CardProduct from '~/src/components/Product/Card/CardProduct.vue';
-import {ref, onMounted, computed} from 'vue';
+import {ref, computed} from 'vue';
 import {useMaterialProductStore} from "~/src/stores/MaterialProductStore";
 import {useProductCardStore} from "~/src/stores/ProductCardStore";
 import {storeToRefs} from "pinia";
@@ -70,8 +70,9 @@ onBeforeMount(() => {
 
 <style scoped>
 .page {
-  width: 100%;
+  width: 78.5%;
   margin: 0 auto;
+  padding: 40px 0;
 }
 
 .page__section-title {
@@ -79,6 +80,8 @@ onBeforeMount(() => {
 }
 
 .page__section-title-text {
+  width: 83%;
+  margin: 0 auto;
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;
@@ -100,43 +103,29 @@ onBeforeMount(() => {
   gap: 45px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 920px) {
+  header {
+    padding: 0 6%;
+  }
+
   .page {
-    padding: 0;
+    width: 95vw !important;
+  }
+
+  .page__section-title {
+    padding: 15px 6%;
+  }
+
+  .page__section-filters {
+    padding: 15px 6%;
   }
 }
 
-@media (max-width: 900px) {
-  .page__products {
-    margin-left: 0;
-  }
 
+@media (max-width: 350px) {
   .page {
-    width: auto;
-    padding: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .page {
-    width: auto;
-    padding: 0;
-  }
-
-  .page__filters-group {
-    gap: 10px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .page__section-title-text {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .page__products {
-    display: flex;
-    justify-content: center;
+    width: 100vw !important;
+    margin: 0 auto;
   }
 }
 </style>

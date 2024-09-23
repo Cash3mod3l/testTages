@@ -50,9 +50,7 @@ watch(
     <label class="select-wrapper__label" for="dynamic-select">{{ props.label }}</label>
     <div class="select-wrapper__custom-select" @click="toggleDropdown">
       <div class="select-wrapper__selected">
-        {{
-          selectedValue === "" ? "" : props.options.find((option) => option.value === selectedValue)?.text
-        }}
+        {{ props.options.find((option) => option.value === selectedValue)?.text ?? "" }}
       </div>
       <span class="select-wrapper__icon">
         <ArrowSVG/>
@@ -77,7 +75,6 @@ watch(
   display: inline-block;
   max-width: 280px;
   width: 100%;
-  font-family: "SF Pro Display", sans-serif !important;
 }
 
 .select-wrapper__label {
@@ -88,6 +85,7 @@ watch(
   line-height: 21px;
   letter-spacing: 0.03em;
   color: #727783;
+  padding-left: 17px;
 }
 
 .select-wrapper__custom-select {

@@ -6,7 +6,7 @@ import Container from "~/src/components/Container.vue";
   <Container></Container>
 </template>
 
-<style scoped>
+<style>
 @font-face {
   font-family: "SF UI Text", sans-serif;
   src: url("/fonts/SF-UI-Text-Regular.otf");

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { request } from '~/src/request/request';
+import { request } from '~/src/requests/request';
 
 type Material = {
     id: number;

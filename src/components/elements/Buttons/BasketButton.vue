@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useBasketStore} from "~/src/stores/BasketStore";
 
-import BacketSVG from "~/src/components/elements/SVG/BacketSVG.vue";
+import BasketSVG from "~/src/components/elements/SVG/BasketSVG.vue";
 import AcceptSVG from "~/src/components/elements/SVG/AcceptSVG.vue";
 
 const props = defineProps<{ productId: string }>();
@@ -14,7 +14,7 @@ onMounted(() => {
 
 <template>
   <button @click="basketStore.toggleBasket(props.productId)">
-    <BacketSVG v-if="basketStore.inBasket(props.productId)"></BacketSVG>
+    <BasketSVG v-if="basketStore.inBasket(props.productId)"></BasketSVG>
     <AcceptSVG v-else></AcceptSVG>
   </button>
 </template>

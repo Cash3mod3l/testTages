@@ -1,9 +1,9 @@
 import {defineStore} from "pinia";
-import type {Product} from "~/src/types/Product";
-import {request} from '~/src/request/request';
+import type {ProductType} from "~/src/types/ProductType";
+import {request} from '~/src/requests/request';
 
 type ParamsProcessingProducts = {
-    products: Product[],
+    products: ProductType[],
     sortOrder: "asc" | "desc",
     materialId: number
 }
@@ -18,8 +18,8 @@ export const useProductCardStore = defineStore("productCardStore",
     {
         state: () => (state),
         getters: {
-            orderByProducts(state: ParamsProcessingProducts): Product[] {
-                return state.products.toSorted((productOne: Product, productTwo: Product) => {
+            orderByProducts(state: ParamsProcessingProducts): ProductType[] {
+                return state.products.toSorted((productOne: ProductType, productTwo: ProductType) => {
                     let compareValue: number = 0;
 
                     if (state.sortOrder === "asc") {
@@ -31,14 +31,14 @@ export const useProductCardStore = defineStore("productCardStore",
                     return compareValue;
                 });
             },
-            sortedMaterialProducts(state: ParamsProcessingProducts): Product[] {
-                let sortedProducts: Product[] = this.orderByProducts;
+            sortedMaterialProducts(state: ParamsProcessingProducts): ProductType[] {
+                let sortedProducts: ProductType[] = this.orderByProducts;
 
                 if (state.materialId === 0) {
                     return sortedProducts;
                 }
 
-                let filteredMaterialProducts: Product[] = sortedProducts.filter(product => product.material === state.materialId);
+                let filteredMaterialProducts: ProductType[] = sortedProducts.filter(product => product.material === state.materialId);
                 console.log(state.materialId);
 
                 return filteredMaterialProducts;
@@ -49,11 +49,11 @@ export const useProductCardStore = defineStore("productCardStore",
         },
         actions: {
             fetchProducts(): Promise<void> {
-                return request<Product[]>({
+                return request<ProductType[]>({
                     method: "GET",
                     url: "/data/items.json",
                 })
-                    .then((data: Product[]): void => {
+                    .then((data: ProductType[]): void => {
                         this.products = data;
                     })
                     .catch((error): void => {

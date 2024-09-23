@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Product } from '~/src/types/Product';
+import type { ProductType } from '~/src/types/ProductType';
 import DetailCardProduct from '~/src/components/Product/Card/DetailCardProduct.vue';
 import FooterCardProduct from "~/src/components/Product/Card/FooterCardProduct.vue";
 
-const props = defineProps<{ products: Product[] }>();
+const props = defineProps<{ products: ProductType[] }>();
 </script>
 
 <template>
@@ -34,9 +34,8 @@ const props = defineProps<{ products: Product[] }>();
 <style scoped>
 .product-card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(336px, max-content));
   gap: 50px;
-  justify-content: center;
 }
 
 .product-card-container__card {
@@ -46,7 +45,7 @@ const props = defineProps<{ products: Product[] }>();
   border: 1px solid #cccccc;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 1);
-  font-family: "SF UI Text", sans-serif;
+  font-family: "SF UI Text", sans-serif !important;
 }
 
 .product-card-container__image-container {
@@ -78,10 +77,15 @@ const props = defineProps<{ products: Product[] }>();
   text-align: center;
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 920px) {
   .product-card-container {
-    width: 90%;
-    margin: 0 auto;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 350px) {
+  .product-card-container {
+    justify-content: center;
   }
 }
 </style>

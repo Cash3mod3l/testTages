@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type {Product} from "~/src/types/Product";
+import type {ProductType} from "~/src/types/ProductType";
 import FavoriteButton from "~/src/components/elements/Buttons/FavoriteButton.vue";
 import BasketButton from "~/src/components/elements/Buttons/BasketButton.vue";
 
-const props = defineProps<{ product: Product }>();
+const props = defineProps<{ product: ProductType }>();
 </script>
 
 <template>
