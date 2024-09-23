@@ -77,6 +77,7 @@ watch(
   display: inline-block;
   max-width: 280px;
   width: 100%;
+  font-family: "SF Pro Display", sans-serif !important;
 }
 
 .select-wrapper__label {

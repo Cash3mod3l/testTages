@@ -30,9 +30,9 @@ const onSortMaterialProductChange = (newValue: number) => {
   productStore.materialId = Number(newValue);
 };
 
-const { getSorterProducts } = storeToRefs(productStore);
+const {getSorterProducts} = storeToRefs(productStore);
 
-onBeforeMount (() => {
+onBeforeMount(() => {
   materialStore.fetchMaterials();
   productStore.fetchProducts();
 })
@@ -69,19 +69,9 @@ onBeforeMount (() => {
 </template>
 
 <style scoped>
-@font-face {
-  font-family: "SF UI Text";
-  src: url("/fonts/SF-UI-Text-Regular.otf");
-}
-
-body {
-  font-family: 'SF Pro Display' !important;
-}
-
 .page {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .page__section-title {
@@ -92,6 +82,7 @@ body {
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;
+  font-family: "SF Pro Display", sans-serif;
 }
 
 .page__section-filters {
@@ -109,15 +100,27 @@ body {
   gap: 45px;
 }
 
+@media (max-width: 1200px) {
+  .page {
+    padding: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .page__products {
     margin-left: 0;
+  }
+
+  .page {
+    width: auto;
+    padding: 0;
   }
 }
 
 @media (max-width: 600px) {
   .page {
     width: auto;
+    padding: 0;
   }
 
   .page__filters-group {

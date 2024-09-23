@@ -10,7 +10,7 @@ type Crumb = {
 export default defineComponent({
   props: {
     crumbs: {
-      type: Array as PropType<Crumb[]>,
+      type: [] as PropType<Crumb[]>,
       required: true,
     },
   },

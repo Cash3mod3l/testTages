@@ -34,8 +34,9 @@ const props = defineProps<{ products: Product[] }>();
 <style scoped>
 .product-card-container {
   display: grid;
-  grid-template-columns: repeat(4, minmax(auto, 260px));
+  grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
   gap: 50px;
+  justify-content: center;
 }
 
 .product-card-container__card {
@@ -45,7 +46,7 @@ const props = defineProps<{ products: Product[] }>();
   border: 1px solid #cccccc;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 1);
-  font-family: "SF UI Text" !important;
+  font-family: "SF UI Text", sans-serif;
 }
 
 .product-card-container__image-container {
@@ -77,21 +78,10 @@ const props = defineProps<{ products: Product[] }>();
   text-align: center;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1920px) {
   .product-card-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 1030px) {
-  .product-card-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .product-card-container {
-    grid-template-columns: 1fr;
+    width: 90%;
+    margin: 0 auto;
   }
 }
 </style>

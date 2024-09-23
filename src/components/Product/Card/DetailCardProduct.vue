@@ -29,6 +29,7 @@ const props = defineProps<{ product: Product }>();
 
 .product-container-detail__code {
   font-size: 10px;
+  font-family: "SF UI Text", sans-serif;
   color: #9e9e9e;
 }
 
